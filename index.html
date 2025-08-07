@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="style.css">
   <!-- AOS CSS -->
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
 </head>
 <body>
@@ -22,12 +24,19 @@
           <li><a href="#">Collections</a></li>
           <li><a href="#">Stores</a></li>
           <li><a href="#">Contact</a></li>
+          
+
         </ul>
       </nav>
+      <div class="search-container" id="search-container" style="display: none;">
+        <input type="text" placeholder="Search products..." id="search-input">
+      </div>
+      
       <div class="icons">
-        <a href="#"><i class="fa fa-search"></i></a>
-        <a href="#"><i class="fa fa-user"></i></a>
-        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+        <a href="#" id="search-icon"><i class="fas fa-search"></i></a>
+        <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+        <a href="auth.html"><i class="fa fa-user"></i></a>
+
       </div>
     </div>
     <div class="hero two-column-hero">
@@ -40,13 +49,11 @@
       <div class="hero-image" data-aos="fade-left">
         <img src="images/header-right.jpg" alt="Fashion Dog">
       </div>
-      
-        
+    </div>
+    </div>  
       </div>
     </div>
-        
-      </div>
-    </div>
+
   </header>
 
   <!-- PRODUCT SECTION -->
@@ -125,9 +132,10 @@
       <div class="footer-col">
         <h4>Follow Us</h4>
         <div class="social-links">
-          <a href="#"><i class="fa fa-instagram"></i></a>
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+
         </div>
       </div>
     </div>
@@ -140,6 +148,55 @@
     once: true      // only animate once
   });
 </script>
+<script>
+  // Wait for DOM to load
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchIcon = document.getElementById("search-icon");
+    const searchModal = document.getElementById("searchModal");
+    const closeBtn = document.querySelector(".modal .close");
+
+    if (searchIcon && searchModal && closeBtn) {
+      searchIcon.addEventListener("click", function (e) {
+        e.preventDefault();
+        searchModal.style.display = "block";
+      });
+
+      closeBtn.addEventListener("click", function () {
+        searchModal.style.display = "none";
+      });
+
+      window.addEventListener("click", function (event) {
+        if (event.target === searchModal) {
+          searchModal.style.display = "none";
+        }
+      });
+    } else {
+      console.warn("Some elements not found. Check IDs and class names.");
+    }
+  });
+</script>
+<!-- Search Modal -->
+<div id="searchModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <input type="text" placeholder="Search for products..." />
+    <button>Search</button>
+  </div>
+</div>
+<script>
+  const searchIcon = document.getElementById('search-icon');
+  const searchContainer = document.getElementById('search-container');
+
+  searchIcon.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (searchContainer.style.display === "none") {
+      searchContainer.style.display = "block";
+    } else {
+      searchContainer.style.display = "none";
+    }
+  });
+</script>
+
 
 </body>
 </html>
